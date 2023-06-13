@@ -35,5 +35,10 @@ describe("Phrase", function() {
 			assert.strictEqual(punctuatedPalindrome.letters(), "MadamImAdam");
 		});
 
+		it("should return empty string", function() {
+			let numberPalindrome = new Phrase("24542");
+			assert.strictEqual(numberPalindrome.letters(), "");
+		});
+
 	});
 });
