@@ -11,7 +11,7 @@ function Phrase(content) {
 	this.content = content;
 
 	this.processedContent = function processedContent() {
-		return this.content.toLowerCase();
+		return this.letters().toLowerCase();
 	}
 
 	// Returns true for a palindrome, false otherwise.
@@ -19,28 +19,13 @@ function Phrase(content) {
 		return this.processedContent() === this.processedContent().reverse();
 	}
 
-	this.louder = function louder() {
-		return this.content.toUpperCase();
+	this.letters = function letters() {
+		let theLetters = [];
+		for (let i = 0; i < this.content.length; i++) {
+			if (this.content.charAt(i).match(/[a-zA-Z]/)) {
+				theLetters.push(this.content.charAt(i));
+			}
+		}
+		return theLetters.join("");
 	}
 }
-
-function TranslatedPhrase(content, translation) {
-	this.content = content;
-	this.translation = translation;
-
-	// Returns translation processed for palindrome testing.
-	this.processedContent = function processedContent() {
-		return this.translation.toLowerCase();
-	}
-}
-
-TranslatedPhrase.prototype = new Phrase();
-
-phrase = new Phrase("Racecar");
-
-console.log(phrase.content);
-console.log(phrase.palindrome());
-console.log(phrase.louder());
-
-let frase = new TranslatedPhrase("recognize", "reconocer");
-console.log(frase.palindrome());
